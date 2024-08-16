@@ -13,6 +13,6 @@ The Decentralized Disaster Response Network (DDRN) is a project that showcases t
 - **Blockchain Logging**: Immutable logging of critical events.
 
 ## Use Cases
-Disaster Response: Real-time communication and coordination.
-Data Integrity: Immutable logging with blockchain.
+- **Disaster Response**: Real-time communication and coordination.
+- **Data Integrity**: Immutable logging with blockchain.
 
