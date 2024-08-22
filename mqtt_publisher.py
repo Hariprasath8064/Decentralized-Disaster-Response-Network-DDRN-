@@ -1,14 +1,11 @@
 import paho.mqtt.client as mqtt
 
-def on_connect(client, userdata, flags, rc):
-    print(f"Connected with result code {rc}")
-    client.publish("test/topic", payload="Hello from MQTT Publisher!", qos=0, retain=False)
-
-def mqtt_publisher():
+def mqtt_publisher(message):
     client = mqtt.Client()
-    client.on_connect = on_connect
-    client.connect("test.mosquitto.org", 1883, 60)
-    client.loop_forever()
+    client.connect("mqtt.eclipseprojects.io", 1883, 60)
+    client.publish("ddrn/updates", message)
+    client.disconnect()
 
 if __name__ == "__main__":
-    mqtt_publisher()
+    message = input("Enter message to publish: ")
+    mqtt_publisher(message)

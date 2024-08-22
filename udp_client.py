@@ -1,11 +1,10 @@
 import socket
 
-def udp_client(server_ip):
+def udp_client(alert_message):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    client_socket.sendto(b"Hello from UDP Client!", (server_ip, 8081))
-    response, addr = client_socket.recvfrom(1024)
-    print(f"Received from server: {response.decode()}")
+    client_socket.sendto(alert_message.encode('utf-8'), ('localhost', 9090))
+    client_socket.close()
 
 if __name__ == "__main__":
-    server_ip = "Enter_Server_IP_Here"
-    udp_client(server_ip)
+    alert_message = input("Enter alert message: ")
+    udp_client(alert_message)
