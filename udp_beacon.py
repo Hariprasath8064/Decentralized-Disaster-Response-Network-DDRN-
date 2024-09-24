@@ -2,13 +2,10 @@ import socket
 import time
 import random
 
-
-# Function to simulate beacon data (temperature, hazard levels)
 def generate_beacon_data():
     temperature = random.uniform(20.0, 40.0)  # Temperature range in Celsius
     hazard_level = random.choice(['low', 'moderate', 'high'])  # Hazard levels
     return temperature, hazard_level
-
 
 def udp_beacon(lat, lon):
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -21,13 +18,10 @@ def udp_beacon(lat, lon):
         # Send data to the UDP server
         client_socket.sendto(message.encode('utf-8'), server_address)
 
-        # Wait for some time before sending the next update (e.g., every 10 seconds)
+        # Wait before sending the next update (e.g., every 10 seconds)
         time.sleep(10)
 
-
 if __name__ == "__main__":
-    # Fixed coordinates for each beacon
-    lat = float(input("Enter latitude: "))  # Specify lat for each beacon instance
-    lon = float(input("Enter longitude: "))  # Specify lon for each beacon instance
-
+    lat = float(input("Enter latitude: "))
+    lon = float(input("Enter longitude: "))
     udp_beacon(lat, lon)
