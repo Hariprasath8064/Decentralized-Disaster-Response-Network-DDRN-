@@ -1,53 +1,52 @@
 import matplotlib.pyplot as plt
 
-# Data for tests
-test_names_latencies = ['Baseline', 'Latency (50)', 'Latency (100)', 'Latency (500)', 'Latency (1000)']
-latency_values_latencies = [2835.12, 2886.54, 2940.11, 3326.54, 3829.44]
-response_times_latencies = [5670.23, 5773.07, 5880.22, 6653.07, 7658.88]
+# Data for Latency Test
+lag_values = [50, 100, 500, 1000]
+latency_values = [2807.7, 2817.98, 3207.43, 3705.65]
 
-test_names_package_drop = ['Package Drop (0%)', 'Package Drop (1%)', 'Package Drop (5%)', 'Package Drop (10%)', 'Package Drop (20%)']
-latency_values_package_drop = [2839.44, 2999.96, 3265.31, 2818.04, 3829.44]
-response_times_package_drop = [5678.88, 5999.93, 6530.63, 5636.08, 7658.88]
+# Data for Packet Loss Test
+packet_loss_values = [1, 5, 10, 20]
+latency_packet_loss = [2699.26, 2695, 2670, 2670.10]
 
-test_names_bandwidth_combined = ['Bandwidth Test (1)', 'Bandwidth Test (2)', 'Bandwidth Test (3)', 'Combined Test', 'High Latency']
-latency_values_bandwidth_combined = [2845.29, 2828.02, 2827.68, 2968.69, 3038.77]
-response_times_bandwidth_combined = [5690.58, 5656.03, 5655.36, 5937.38, 6077.54]
+# Data for Bandwidth Test
+bandwidth_values = [100, 500, 1000]
+latency_bandwidth = [2708.71, 2688.99, 2824.53]
 
-# 1. Latency and Response Time for Baseline and Latencies
-plt.figure(figsize=(10, 6))
-plt.plot(test_names_latencies, latency_values_latencies, label="Latency (ms)", marker='o', color='b')
-plt.plot(test_names_latencies, response_times_latencies, label="Response Time (ms)", marker='x', color='g')
-plt.title('Latency and Response Time - Baseline and Latencies')
-plt.xlabel('Tests')
-plt.ylabel('Time (ms)')
-plt.xticks(rotation=45, ha='right')
-plt.legend()
-plt.grid(True)
+# Data for Combined Test
+combined_conditions = ['Combined Test', 'Baseline Test', 'High Latency Test']
+combined_latencies = [3207.38, 2835.12, 2889.41]
+
+# Create subplots
+fig, axs = plt.subplots(2, 2, figsize=(14, 10))
+
+# Latency Test
+axs[0, 0].plot(lag_values, latency_values, marker='o')
+axs[0, 0].set_title('Latency vs. Lag (ms)')
+axs[0, 0].set_xlabel('Lag (ms)')
+axs[0, 0].set_ylabel('Latency (ms)')
+axs[0, 0].grid()
+
+# Packet Loss Test
+axs[0, 1].plot(packet_loss_values, latency_packet_loss, marker='o', color='orange')
+axs[0, 1].set_title('Latency vs. Packet Loss (%)')
+axs[0, 1].set_xlabel('Packet Loss (%)')
+axs[0, 1].set_ylabel('Latency (ms)')
+axs[0, 1].grid()
+
+# Bandwidth Test
+axs[1, 0].plot(bandwidth_values, latency_bandwidth, marker='o', color='green')
+axs[1, 0].set_title('Latency vs. Bandwidth (KB/s)')
+axs[1, 0].set_xlabel('Bandwidth (KB/s)')
+axs[1, 0].set_ylabel('Latency (ms)')
+axs[1, 0].grid()
+
+# Combined Test
+axs[1, 1].plot(combined_conditions, combined_latencies, marker='o', color='red')
+axs[1, 1].set_title('Latency vs. Combined Conditions')
+axs[1, 1].set_xlabel('Test Type')
+axs[1, 1].set_ylabel('Latency (ms)')
+axs[1, 1].grid()
+
 plt.tight_layout()
 plt.show()
 
-# 2. Latency and Response Time for Package Drops
-plt.figure(figsize=(10, 6))
-plt.plot(test_names_package_drop, latency_values_package_drop, label="Latency (ms)", marker='o', color='b')
-plt.plot(test_names_package_drop, response_times_package_drop, label="Response Time (ms)", marker='x', color='g')
-plt.title('Latency and Response Time - Package Drops')
-plt.xlabel('Tests')
-plt.ylabel('Time (ms)')
-plt.xticks(rotation=45, ha='right')
-plt.legend()
-plt.grid(True)
-plt.tight_layout()
-plt.show()
-
-# 3. Latency and Response Time for Bandwidth and Combined Tests
-plt.figure(figsize=(10, 6))
-plt.plot(test_names_bandwidth_combined, latency_values_bandwidth_combined, label="Latency (ms)", marker='o', color='b')
-plt.plot(test_names_bandwidth_combined, response_times_bandwidth_combined, label="Response Time (ms)", marker='x', color='g')
-plt.title('Latency and Response Time - Bandwidth and Combined Tests')
-plt.xlabel('Tests')
-plt.ylabel('Time (ms)')
-plt.xticks(rotation=45, ha='right')
-plt.legend()
-plt.grid(True)
-plt.tight_layout()
-plt.show()
